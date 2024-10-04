@@ -1,45 +1,52 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-
-import Operation from '@/views/Operation.vue';
-import Vehicle from '@/views/Vehicle.vue';
-import Customer from '@/views/Customer.vue';
-import Plan from '@/views/Plan.vue';
-import Contract from '@/views/Contract.vue';
-
-Vue.use(VueRouter);
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Operation',
-    component: Operation,
-  },
-  {
-    path: '/vehicles',
-    name: 'Vehicle',
-    component: Vehicle,
+    name: 'Home',
+    component: HomeView
   },
   {
     path: '/customers',
-    name: 'Customer',
-    component: Customer,
+    name: 'Customers',
+    component: () => import('@/views/CustomerView.vue')
+  },
+  {
+    path: '/vehicles',
+    name: 'Vehicles',
+    component: () => import('@/views/VehicleView.vue')
   },
   {
     path: '/plans',
-    name: 'Plan',
-    component: Plan,
+    name: 'Plans',
+    component: () => import('@/views/PlanView.vue')
+  },
+  {
+    path: '/customer-plans',
+    name: 'CustomerPlans',
+    component: () => import('@/views/CustomerPlanView.vue')
   },
   {
     path: '/contracts',
-    name: 'Contract',
-    component: Contract,
+    name: 'Contracts',
+    component: () => import('@/views/ContractView.vue')
   },
-];
+  {
+    path: '/contract-rules',
+    name: 'ContractRules',
+    component: () => import('@/views/ContractRuleView.vue')
+  },
+  {
+    path: '/park-movements',
+    name: 'ParkMovements',
+    component: () => import('@/views/ParkMovementView.vue')
+  }
+]
 
-const router = new VueRouter({
-  mode: 'history',
-  routes,
-});
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
 
-export default router;
+export default router
