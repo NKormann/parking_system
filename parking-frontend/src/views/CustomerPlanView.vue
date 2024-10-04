@@ -26,7 +26,6 @@
                 <v-container>
                   <v-row>
                     <v-col cols="12" sm="6">
-                      <!-- Usamos customer_id no v-model -->
                       <v-select
                         v-model="editedItem.customer_id"
                         :items="customers"
@@ -36,7 +35,6 @@
                       ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6">
-                      <!-- Usamos plan_id no v-model -->
                       <v-select
                         v-model="editedItem.plan_id"
                         :items="plans"
@@ -88,8 +86,8 @@ const customers = ref([])
 const plans = ref([])
 const editedIndex = ref(-1)
 const editedItem = ref({
-  customer_id: null,  // customer_id para envio
-  plan_id: null,      // plan_id para envio
+  customer_id: null, 
+  plan_id: null, 
   due_date: null
 })
 const defaultItem = {
@@ -139,7 +137,6 @@ async function fetchPlans() {
 function editItem(item) {
   editedIndex.value = customerPlans.value.indexOf(item)
   editedItem.value = Object.assign({}, item)
-  // Configurar os IDs de cliente e plano ao editar
   editedItem.value.customer_id = item.customer.id
   editedItem.value.plan_id = item.plan.id
   dialog.value = true

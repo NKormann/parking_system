@@ -35,7 +35,6 @@
                       <v-text-field v-model="editedItem.description" label="Descrição"></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
-                      <!-- Aqui estamos vinculando customer_id, mas exibindo o nome do cliente -->
                       <v-select
                         v-model="editedItem.customer_id"
                         :items="customers"
@@ -57,7 +56,6 @@
         </v-toolbar>
       </template>
       <template v-slot:item.customer="{ item }">
-        <!-- Aqui exibimos o nome do cliente na tabela -->
         {{ item.customer ? item.customer.name : 'Rotativo' }}
       </template>
       <template v-slot:item.actions="{ item }">
@@ -80,13 +78,13 @@ const editedItem = ref({
   plate: '',
   model: '',
   description: '',
-  customer_id: null  // Alterado para usar customer_id no lugar de customer
+  customer_id: null
 })
 const defaultItem = {
   plate: '',
   model: '',
   description: '',
-  customer_id: null  // Alterado para usar customer_id
+  customer_id: null
 }
 
 const formTitle = computed(() => {
@@ -122,7 +120,7 @@ async function fetchCustomers() {
 function editItem(item) {
   editedIndex.value = vehicles.value.indexOf(item)
   editedItem.value = Object.assign({}, item)
-  editedItem.value.customer_id = item.customer ? item.customer.id : null  // Vinculando o ID do cliente
+  editedItem.value.customer_id = item.customer ? item.customer.id : null
   dialog.value = true
 }
 
@@ -146,7 +144,6 @@ function close() {
 
 async function save() {
   try {
-    // Verifica se estamos editando ou criando um novo veículo
     if (editedIndex.value > -1) {
       await axios.put(`http://localhost:8000/api/v1/vehicle/${editedItem.value.id}/`, editedItem.value)
       Object.assign(vehicles.value[editedIndex.value], editedItem.value)

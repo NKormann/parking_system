@@ -110,7 +110,6 @@ async function save() {
       return
     }
     
-    // Se for uma nova entrada, verifica se existe um veículo e cliente associado à placa ou card_id.
     const response = await axios.post('http://localhost:8000/api/v1/parkmovement/', {
       plate: editedItem.value.plate || null,
       card_id: editedItem.value.card_id || null
