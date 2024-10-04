@@ -39,12 +39,13 @@ class Contract(models.Model):
         return self.description
 
 class ContractRule(models.Model):
-    contract = models.ForeignKey(Contract, on_delete=models.CASCADE)
-    until = models.IntegerField()  # Em minutos
+    contract = models.ForeignKey(Contract, on_delete=models.CASCADE, related_name='contract_rules')
+    until = models.IntegerField()
     value = models.FloatField()
 
     def __str__(self):
         return f"{self.contract.description} - Até {self.until} min"
+
 
 class ParkMovement(models.Model):
     entry_date = models.DateTimeField(auto_now_add=True)
