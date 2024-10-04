@@ -112,7 +112,7 @@ npm install
 2. **Iniciar o servidor de desenvolvimento**:
 
 ```bash
-npm run serve
+npm run dev
 ```
 
 ---
@@ -133,7 +133,7 @@ Isso irá iniciar o backend na URL: `http://localhost:8000/`
 npm run serve
 ```
 
-Isso irá iniciar o frontend na URL: `http://localhost:8080/`
+Isso irá iniciar o frontend na URL: `http://localhost:3000/`
 
 Agora você pode acessar a aplicação completa no navegador.
 
