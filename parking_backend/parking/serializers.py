@@ -6,7 +6,12 @@ class CustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = '__all__'
 
+
 class VehicleSerializer(serializers.ModelSerializer):
+    customer = CustomerSerializer(read_only=True)
+    customer_id = serializers.PrimaryKeyRelatedField(
+        queryset=Customer.objects.all(), source='customer', allow_null=True
+    )
     class Meta:
         model = Vehicle
         fields = '__all__'
@@ -17,20 +22,26 @@ class PlanSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CustomerPlanSerializer(serializers.ModelSerializer):
+    customer = CustomerSerializer(read_only=True)
+    plan = PlanSerializer(read_only=True)
+
+    customer_id = serializers.PrimaryKeyRelatedField(queryset=Customer.objects.all(), source='customer')
+    plan_id = serializers.PrimaryKeyRelatedField(queryset=Plan.objects.all(), source='plan')
+
     class Meta:
         model = CustomerPlan
-        fields = '__all__'
-
-class ContractSerializer(serializers.ModelSerializer):
-    contract_rules = serializers.PrimaryKeyRelatedField(many=True, queryset=ContractRule.objects.all())
-
-    class Meta:
-        model = Contract
         fields = '__all__'
 
 class ContractRuleSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContractRule
+        fields = '__all__'
+
+class ContractSerializer(serializers.ModelSerializer):
+    contract_rules = ContractRuleSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Contract
         fields = '__all__'
 
 class ParkMovementSerializer(serializers.ModelSerializer):

@@ -1,7 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from django.utils import timezone
+from rest_framework.decorators import action
 from .models import (
     Customer,
     Vehicle,
@@ -86,3 +86,18 @@ class ParkMovementViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
         except ValidationError as e:
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
+        
+    @action(detail=True, methods=['post'])
+    def exit(self, request, pk=None):
+        """
+        Endpoint para registrar a saída de um veículo.
+        """
+        try:
+            park_movement = ParkMovement.objects.get(pk=pk, exit_date__isnull=True)
+            updated_movement = exit_vehicle(park_movement)
+            serializer = ParkMovementSerializer(updated_movement)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except ParkMovement.DoesNotExist:
+            return Response({'error': 'Movimento de estacionamento não encontrado ou já finalizado.'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
