@@ -53,7 +53,7 @@ A **documentação completa da API** está disponível em:
 Primeiro, clone o repositório para a sua máquina local:
 
 ```bash
-git clone https://github.com/seu-usuario/parking-system.git
+git@github.com:NKormann/parking_system.git
 cd parking-system
 ```
 
