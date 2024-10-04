@@ -1,0 +1,30 @@
+# Ignorar o ambiente virtual
+venv/
+
+# Ignorar arquivos compilados do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+
+# Ignorar banco de dados SQLite (se não quiser versionar)
+db.sqlite3
+
+# Ignorar configurações de IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar arquivos do Node.js (se aplicável)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Ignorar arquivos estáticos coletados (se aplicável)
+staticfiles/
