@@ -35,9 +35,6 @@ A **documentação completa da API** está disponível em:
 4. [Executando a Aplicação](#executando-a-aplicação)
 5. [Regras de Negócio](#regras-de-negócio)
 6. [APIs](#apis)
-7. [Contribuindo](#contribuindo)
-8. [Licença](#licença)
-
 ---
 
 ## Instalação
@@ -130,7 +127,7 @@ Isso irá iniciar o backend na URL: `http://localhost:8000/`
 2. **Iniciar o servidor do Vue.js (Frontend)**:
 
 ```bash
-npm run serve
+npm run dev
 ```
 
 Isso irá iniciar o frontend na URL: `http://localhost:3000/`
@@ -145,7 +142,6 @@ A aplicação PARKING SYSTEM segue as seguintes regras de negócios:
 
 1. **Clientes Mensalistas**:
    - São clientes que possuem planos vinculados. Não são cobrados por entrada e saída.
-   - Sempre que houver um movimento de entrada ou saída de um mensalista, o valor deve ser "Mensalista" e não 0.0.
 
 2. **Clientes Rotativos**:
    - São clientes que não possuem um plano mensal. A cobrança é feita com base nas regras de contratos configuradas.
